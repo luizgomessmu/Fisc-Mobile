@@ -1,0 +1,107 @@
+
+        <!DOCTYPE html>
+        <html>
+        <head>
+            <meta charset="utf-8" />
+            <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <title>FiscObras GPS - 04/02/2026</title>
+            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.css" />
+            <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.js"></script>
+            <style>
+                body { margin: 0; padding: 0; font-family: -apple-system, sans-serif; background: #f4f4f9; }
+                #map { height: 100vh; width: 100vw; }
+                .btn-gps { 
+                    position: fixed; bottom: 30px; right: 20px; z-index: 1000; 
+                    background: white; color: #007AFF; width: 55px; height: 55px; 
+                    border-radius: 50%; border: none; font-size: 24px; 
+                    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+                    display: flex; align-items: center; justify-content: center;
+                    active { background: #ebebeb; }
+                }
+                .info-banner {
+                    position: fixed; top: 10px; left: 10px; right: 10px; z-index: 1000;
+                    background: rgba(255,255,255,0.9); padding: 10px; border-radius: 8px;
+                    box-shadow: 0 2px 6px rgba(0,0,0,0.1); font-size: 13px;
+                }
+            </style>
+        </head>
+        <body>
+            <div class="info-banner">
+                <b>Rota:</b> 04/02/2026 | 9 locais
+            </div>
+            <button class="btn-gps" onclick="ativarLocalizacao()">🧭</button>
+            <div id="map"></div>
+
+            <script>
+                const dados = [{"lat": -22.934605296158853, "lon": -43.02418311776262, "logradouro": "EDGAR BORGES, DR", "quadra": "4", "lote": "9", "inscricao": "2013620345", "processo": "9900118044/2024"}, {"lat": -22.926523015899246, "lon": -43.004980844598634, "logradouro": "4 (JARDIM FLUMINENSE)", "quadra": "E", "lote": "12", "inscricao": "2022290152", "processo": "9900013791/2024"}, {"lat": -22.945318892981057, "lon": -43.01556718174942, "logradouro": "JOAO BATISTA LEAL,DR", "quadra": "S", "lote": "8", "inscricao": "2024052063", "processo": "80/4584/2015"}, {"lat": -22.93122812249388, "lon": -43.01279451216095, "logradouro": "GUATEMALA (SOTER)", "quadra": "28", "lote": "18", "inscricao": "2021920070", "processo": "80/2451/2023"}, {"lat": -22.94934505996699, "lon": -43.04865001448968, "logradouro": "ANTONIO RODRIGUES DA COSTA, JORN", "quadra": "232", "lote": "20", "inscricao": "2015350255", "processo": "9900185533/2025"}, {"lat": -22.949522893514363, "lon": -43.049073803514034, "logradouro": "ANTONIO RODRIGUES DA COSTA, JORN", "quadra": "232", "lote": "24", "inscricao": "2015350311", "processo": "9900193799/2025"}, {"lat": -22.92548850749597, "lon": -43.008930282124766, "logradouro": "JOAO R DE OLIVEIRA,DEP", "quadra": "6", "lote": "18", "inscricao": "2022150150", "processo": "80/4522/2023"}, {"lat": -22.933749207490543, "lon": -43.02726860331879, "logradouro": "JOAO BITTENCOURT", "quadra": "18", "lote": "16", "inscricao": "2013680032", "processo": "9900018274/2024"}, {"lat": -22.959656102953563, "lon": -43.02783054319988, "logradouro": "AMIZADE,DA", "quadra": "", "lote": "17", "inscricao": "2024341167", "processo": "9900182683/2025"}];
+                const map = L.map('map', { zoomControl: false });
+                
+                L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { 
+                    maxZoom: 19,
+                    attribution: '© OpenStreetMap'
+                }).addTo(map);
+
+                // Adiciona marcadores da rota
+                const bounds = [];
+                dados.forEach(item => {
+                    if(item.lat && item.lon) {
+                        const marker = L.marker([item.lat, item.lon]).addTo(map);
+                        marker.bindPopup(`
+                            <div style="font-size:14px">
+                                <b>${item.logradouro}</b><br>
+                                Q: ${item.quadra} | L: ${item.lote}<br>
+                                <span style="color:#007AFF">Proc: ${item.processo}</span>
+                            </div>
+                        `);
+                        bounds.push([item.lat, item.lon]);
+                    }
+                });
+                
+                if(bounds.length > 0) map.fitBounds(bounds, {padding: [50, 50]});
+
+                // Lógica de Localização (GPS do Celular)
+                let userMarker, accuracyCircle;
+                let firstLocation = true;
+
+                function onLocationFound(e) {
+                    const radius = e.accuracy;
+
+                    if (!userMarker) {
+                        // Ponto azul estilo iOS
+                        userMarker = L.circleMarker(e.latlng, {
+                            radius: 8, fillColor: '#007AFF', color: 'white', weight: 3, opacity: 1, fillOpacity: 1
+                        }).addTo(map);
+                        accuracyCircle = L.circle(e.latlng, radius, {
+                            color: '#007AFF', opacity: 0.1, fillColor: '#007AFF', fillOpacity: 0.1
+                        }).addTo(map);
+                    } else {
+                        userMarker.setLatLng(e.latlng);
+                        accuracyCircle.setLatLng(e.latlng).setRadius(radius);
+                    }
+
+                    if (firstLocation) {
+                        map.setView(e.latlng, 17);
+                        firstLocation = false;
+                    }
+                }
+
+                function onLocationError(e) {
+                    alert("Acesso ao GPS negado. Vá em Ajustes > Privacidade > Serv. Localização e verifique o Safari.");
+                }
+
+                map.on('locationfound', onLocationFound);
+                map.on('locationerror', onLocationError);
+
+                function ativarLocalizacao() {
+                    // No iOS, precisa de uma ação do usuário (clique) para iniciar
+                    map.locate({
+                        setView: true, 
+                        maxZoom: 18, 
+                        watch: true, 
+                        enableHighAccuracy: true 
+                    });
+                }
+            </script>
+        </body>
+        </html>
+        
