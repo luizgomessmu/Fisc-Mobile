@@ -10,7 +10,6 @@
                 body { margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
                 #map { height: 100vh; width: 100vw; }
                 
-                /* Estilização do Botão GPS */
                 .btn-gps { 
                     position: fixed; bottom: 30px; right: 20px; z-index: 1000; 
                     background: white; color: #007AFF; width: 55px; height: 55px; 
@@ -19,7 +18,6 @@
                     display: flex; align-items: center; justify-content: center;
                 }
 
-                /* Estética do Balão conforme o exemplo anexado */
                 .leaflet-popup-content-wrapper {
                     border-radius: 12px;
                     padding: 5px;
@@ -36,6 +34,7 @@
                 .popup-value { color: #555; }
                 .popup-divider { border-top: 1px solid #ccc; margin: 10px 0; }
                 .popup-process { color: #007AFF; font-weight: bold; text-decoration: none; }
+                .popup-obs { font-style: italic; color: #666; font-size: 13px; }
 
                 .info-banner {
                     position: fixed; top: 10px; left: 10px; right: 10px; z-index: 1000;
@@ -56,13 +55,14 @@
                 const map = L.map('map', { zoomControl: false });
                 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 19 }).addTo(map);
 
-                const dados = [{"lat": -22.934605296158853, "lon": -43.02418311776262, "logradouro": "EDGAR BORGES, DR", "quadra": "4", "lote": "9", "inscricao": "2013620345", "processo": "9900118044/2024"}, {"lat": -22.926523015899246, "lon": -43.004980844598634, "logradouro": "4 (JARDIM FLUMINENSE)", "quadra": "E", "lote": "12", "inscricao": "2022290152", "processo": "9900013791/2024"}, {"lat": -22.945318892981057, "lon": -43.01556718174942, "logradouro": "JOAO BATISTA LEAL,DR", "quadra": "S", "lote": "8", "inscricao": "2024052063", "processo": "80/4584/2015"}, {"lat": -22.93122812249388, "lon": -43.01279451216095, "logradouro": "GUATEMALA (SOTER)", "quadra": "28", "lote": "18", "inscricao": "2021920070", "processo": "80/2451/2023"}, {"lat": -22.94934505996699, "lon": -43.04865001448968, "logradouro": "ANTONIO RODRIGUES DA COSTA, JORN", "quadra": "232", "lote": "20", "inscricao": "2015350255", "processo": "9900185533/2025"}, {"lat": -22.949522893514363, "lon": -43.049073803514034, "logradouro": "ANTONIO RODRIGUES DA COSTA, JORN", "quadra": "232", "lote": "24", "inscricao": "2015350311", "processo": "9900193799/2025"}, {"lat": -22.92548850749597, "lon": -43.008930282124766, "logradouro": "JOAO R DE OLIVEIRA,DEP", "quadra": "6", "lote": "18", "inscricao": "2022150150", "processo": "80/4522/2023"}, {"lat": -22.933749207490543, "lon": -43.02726860331879, "logradouro": "JOAO BITTENCOURT", "quadra": "18", "lote": "16", "inscricao": "2013680032", "processo": "9900018274/2024"}, {"lat": -22.959656102953563, "lon": -43.02783054319988, "logradouro": "AMIZADE,DA", "quadra": "", "lote": "17", "inscricao": "2024341167", "processo": "9900182683/2025"}];
+                const dados = [{"lat": -22.934605296158853, "lon": -43.02418311776262, "logradouro": "EDGAR BORGES, DR", "quadra": "4", "lote": "9", "inscricao": "2013620345", "processo": "9900118044/2024", "obs_proc": "Verificar se no local funciona como canil/pet ou se apenas possui uso residencial."}, {"lat": -22.926523015899246, "lon": -43.004980844598634, "logradouro": "4 (JARDIM FLUMINENSE)", "quadra": "E", "lote": "12", "inscricao": "2022290152", "processo": "9900013791/2024", "obs_proc": "Aceite. Agendado para o dia 04/02/2026. 981592590 - Henrique"}, {"lat": -22.945318892981057, "lon": -43.01556718174942, "logradouro": "JOAO BATISTA LEAL,DR", "quadra": "S", "lote": "8", "inscricao": "2024052063", "processo": "80/4584/2015", "obs_proc": "Vistoriar no dia 04/02/2026 para identificar se est\u00e1 constru\u00eddo conforme o projeto. O propriet\u00e1rio deseja retomar o processo que foi largado. Ap\u00f3s vistoria, o propriet\u00e1rio deve solicitar a retomada do processo. 992580935 - Luis Ant\u00f4nio."}, {"lat": -22.93122812249388, "lon": -43.01279451216095, "logradouro": "GUATEMALA (SOTER)", "quadra": "28", "lote": "18", "inscricao": "2021920070", "processo": "80/2451/2023", "obs_proc": "Aceite agendado para o dia 04/02/2026. 988743783 - Carlos"}, {"lat": -22.94934505996699, "lon": -43.04865001448968, "logradouro": "ANTONIO RODRIGUES DA COSTA, JORN", "quadra": "232", "lote": "20", "inscricao": "2015350255", "processo": "9900185533/2025", "obs_proc": "Certid\u00e3o de Viabilidade"}, {"lat": -22.949522893514363, "lon": -43.049073803514034, "logradouro": "ANTONIO RODRIGUES DA COSTA, JORN", "quadra": "232", "lote": "24", "inscricao": "2015350311", "processo": "9900193799/2025", "obs_proc": "Certid\u00e3o de Viabilidade"}, {"lat": -22.92548850749597, "lon": -43.008930282124766, "logradouro": "JOAO R DE OLIVEIRA,DEP", "quadra": "6", "lote": "18", "inscricao": "2022150150", "processo": "80/4522/2023", "obs_proc": "[Passar l\u00e1 para verificar se finalizou]Aceite agendado para 09/01/2025 na parte da manh\u00e3. Vanessa - 21974151451"}, {"lat": -22.933749207490543, "lon": -43.02726860331879, "logradouro": "JOAO BITTENCOURT", "quadra": "18", "lote": "16", "inscricao": "2013680032", "processo": "9900018274/2024", "obs_proc": "Verificar se manteve paralisado. Obra diferente do projeto aprovado e talude \u00e0 90 graus n\u00e3o informado no projeto. Intimado. Quando fizer a fiscaliza\u00e7\u00e3o do 7651, instruir esse processo tamb\u00e9m"}, {"lat": -22.959656102953563, "lon": -43.02783054319988, "logradouro": "AMIZADE,DA", "quadra": "", "lote": "17", "inscricao": "2024341167", "processo": "9900182683/2025", "obs_proc": "Den\u00fancia de Obra irregular dentro de condom\u00ednio."}];
                 const bounds = [];
 
-                // Renderização dos Balões com a estética solicitada
                 dados.forEach(item => {
                     if(item.lat && item.lon) {
                         const marker = L.marker([item.lat, item.lon]).addTo(map);
+                        
+                        // Layout do Balão com Observação incluída
                         const content = `
                             <b class="popup-title">Endereço: <span style="font-weight:normal; color:#444;">${item.logradouro}</span></b>
                             <span class="popup-label">Quadra:</span> <span class="popup-value">${item.quadra}</span> | 
@@ -70,7 +70,9 @@
                             <span class="popup-label">Insc:</span> <span class="popup-value">${item.inscricao}</span>
                             <div class="popup-divider"></div>
                             <span class="popup-label">Processo:</span> <span class="popup-process">${item.processo}</span>
+                            ${item.obs_proc ? '<br><span class="popup-label">Obs:</span> <span class="popup-obs">' + item.obs_proc + '</span>' : ''}
                         `;
+                        
                         marker.bindPopup(content);
                         bounds.push([item.lat, item.lon]);
                     }
@@ -78,15 +80,13 @@
                 
                 if(bounds.length > 0) map.fitBounds(bounds, {padding: [50, 50]});
 
-                // --- LÓGICA DE GPS INTELIGENTE ---
                 let userMarker;
-                let deveCentralizar = false; // Só centraliza quando o usuário pede
+                let deveCentralizar = false;
 
-                // Ativa o monitoramento constante em background
                 map.locate({ watch: true, enableHighAccuracy: true });
 
                 function clicouNoBotao() {
-                    deveCentralizar = true; // Ativa a permissão para mover a câmera uma vez
+                    deveCentralizar = true;
                     if(userMarker) {
                         map.setView(userMarker.getLatLng(), 18);
                         deveCentralizar = false;
@@ -94,7 +94,6 @@
                 }
 
                 map.on('locationfound', (e) => {
-                    // Atualiza ou cria o marcador azul (sem mover a tela)
                     if (!userMarker) {
                         userMarker = L.circleMarker(e.latlng, {
                             radius: 9, fillColor: '#007AFF', color: 'white', weight: 3, fillOpacity: 1
@@ -103,14 +102,12 @@
                         userMarker.setLatLng(e.latlng);
                     }
 
-                    // Só move a câmera se o botão foi clicado ou na primeira localização
                     if (deveCentralizar) {
                         map.setView(e.latlng, 18);
-                        deveCentralizar = false; // Trava a tela novamente após centralizar
+                        deveCentralizar = false;
                     }
                 });
 
-                // Se o usuário arrastar o mapa, cancelamos qualquer intenção de centralizar
                 map.on('dragstart', () => { deveCentralizar = false; });
             </script>
         </body>
