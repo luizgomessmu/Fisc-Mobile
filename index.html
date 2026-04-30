@@ -4,7 +4,7 @@
         <head>
             <meta charset="utf-8" />
             <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-            <title>FiscObras GPS - 17/04/2026</title>
+            <title>FiscObras GPS - 30/04/2026</title>
             <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
             <style>
                 body { margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
@@ -45,7 +45,7 @@
         </head>
         <body>
             <div class="info-banner">
-                <b>Rota:</b> 17/04/2026 | 3 locais
+                <b>Rota:</b> 30/04/2026 | 8 locais
             </div>
             <button class="btn-gps" onclick="clicouNoBotao()">🧭</button>
             <div id="map"></div>
@@ -55,7 +55,7 @@
                 const map = L.map('map', { zoomControl: false });
                 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 19 }).addTo(map);
 
-                const dados = [{"lat": -22.942739668924187, "lon": -43.0116444469314, "logradouro": "CEDRO ROSA", "quadra": "118", "lote": "32", "inscricao": "2023550619", "processo": "080000204/2023", "obs_proc": "Aceite agendado para dia 17/03/2026 com Luciana"}, {"lat": -22.943821174865118, "lon": -43.016796934970074, "logradouro": "MARTINHO LUTERO", "quadra": "xxx", "lote": "40", "inscricao": "2024120337", "processo": "9900040045/2024", "obs_proc": "Intimar para cumprir exig\u00eancias do processo. Constru\u00e7\u00e3o de antena."}, {"lat": -22.936020584296973, "lon": -42.99983129690003, "logradouro": "19 (JD FAZ TERRABRAS)", "quadra": "28", "lote": "20", "inscricao": "2022810133", "processo": "9900174719/2025", "obs_proc": "Multar por constru\u00e7\u00e3o irregular."}];
+                const dados = [{"lat": -22.945337795301224, "lon": -43.015599584369795, "logradouro": "Rua Dr Jo\u00e3o Batista Leal, n\u00b0420", "quadra": "S", "lote": "8", "inscricao": "2024052063", "processo": "80/4584/2015", "obs_proc": "Vistoria agendada para o dia 29/04/2026. 992580935 - Luis Ant\u00f4nio."}, {"lat": -22.96866023692362, "lon": -43.0399217911079, "logradouro": "AMIZADE,DA", "quadra": "23", "lote": "40", "inscricao": "2020420674", "processo": "9900005242/2026", "obs_proc": "Apensar a processo de mesmo tema. 9900009089/2026"}, {"lat": -22.967045364918445, "lon": -43.04350685286542, "logradouro": "MAURO MONTEIRO", "quadra": "4", "lote": "16", "inscricao": "2010110047", "processo": "9900009089/2026", "obs_proc": "Verificar se as obras das unidades multifamiliar est\u00e3o paralisadas ou se foi dado andamento."}, {"lat": -22.94269759619955, "lon": -43.01158866086283, "logradouro": "CEDRO ROSA", "quadra": "118", "lote": "32", "inscricao": "2023550619", "processo": "080000204/2023", "obs_proc": "Aceite agendado para dia 17/03/2026 com Luciana"}, {"lat": -22.914291521873487, "lon": -43.06093256069991, "logradouro": "RUA 1 (SANTA FILOMENA)", "quadra": "N/D", "lote": "N/D", "inscricao": "2018610015", "processo": "9900048519/2026", "obs_proc": "Verificar se h\u00e1 obras. Est\u00e1 sendo comercializado em grupos de facebook."}, {"lat": -22.92462903818373, "lon": -43.00519013319811, "logradouro": "MARIA ROSA CELISTRE", "quadra": "B", "lote": "89", "inscricao": "2022404079", "processo": "9900001181/2026", "obs_proc": "Ir ao local e verificar se a obra pertence \u00e0 prefeitura e se as reclama\u00e7\u00f5es permanecem no local."}, {"lat": -22.936738499353893, "lon": -43.079418048175455, "logradouro": "DR, WALDIR COSTA", "quadra": "", "lote": "", "inscricao": "1063720207", "processo": "9900178410/2025", "obs_proc": "O processo est\u00e1 na CAED para recurso. Verificar se a obra est\u00e1 paralisada aguardando. Intimar novamente o vizinho."}, {"lat": -22.94478362611059, "lon": -43.00913684502615, "logradouro": "73 (JARDIM FAZENDINHA)", "quadra": "126", "lote": "35", "inscricao": "2023530282", "processo": "9900003929/2026", "obs_proc": "Intimar para apresentar prova de legalidade / paralisar obras at\u00e9 a apresenta\u00e7\u00e3o da licen\u00e7a de obras. Intimar o denunciante tamb\u00e9m."}];
                 const bounds = [];
 
                 dados.forEach(item => {
