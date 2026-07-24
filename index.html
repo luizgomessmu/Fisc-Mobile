@@ -4,7 +4,7 @@
         <head>
             <meta charset="utf-8" />
             <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-            <title>FiscObras GPS - 26/06/2026</title>
+            <title>FiscObras GPS - 24/07/2026</title>
             <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
             <style>
                 body { margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
@@ -45,7 +45,7 @@
         </head>
         <body>
             <div class="info-banner">
-                <b>Rota:</b> 26/06/2026 | 5 locais
+                <b>Rota:</b> 24/07/2026 | 5 locais
             </div>
             <button class="btn-gps" onclick="clicouNoBotao()">🧭</button>
             <div id="map"></div>
@@ -55,7 +55,7 @@
                 const map = L.map('map', { zoomControl: false });
                 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 19 }).addTo(map);
 
-                const dados = [{"lat": -22.932523889331705, "lon": -42.9931591303158, "logradouro": "PAU BRASIL", "quadra": "11", "lote": "56", "inscricao": "2023882510", "processo": "9900014984/2026", "obs_proc": "Aguardar retorno da planta de localiza\u00e7\u00e3o."}, {"lat": -22.935345072166108, "lon": -43.02515789934998, "logradouro": "JOSE BITTENCOURT", "quadra": "6", "lote": "9", "inscricao": "2013640330", "processo": "9900133675/2025", "obs_proc": "Obras est\u00e3o paralisadas. Deu entrada no processo de legaliza\u00e7\u00e3o 9900002678/2026."}, {"lat": -22.933769654990183, "lon": -43.027297765620375, "logradouro": "Rua Jos\u00e9 Bittencourt, 339 (Quadra 18, Lote 1A11)", "quadra": "18", "lote": "16", "inscricao": "2013680032", "processo": "9900018274/2024", "obs_proc": "Verificar se manteve paralisado. Obra diferente do projeto aprovado e talude \u00e0 90 graus n\u00e3o informado no projeto. Intimado. Quando fizer a fiscaliza\u00e7\u00e3o do 7651, instruir esse processo tamb\u00e9m"}, {"lat": -22.930588613399447, "lon": -43.02058597782482, "logradouro": "REPUBLICA DOMINICANA", "quadra": "107", "lote": "7", "inscricao": "2013460286", "processo": "9900051866/2023", "obs_proc": "Intimar novamente. Solicitar no processo o boletim de aceite."}, {"lat": -22.931836977052267, "lon": -43.01511727909852, "logradouro": "Rua professora Romana Gon\u00e7alves, 3885", "quadra": "36", "lote": "2", "inscricao": "2021860240", "processo": "9900006194/2025", "obs_proc": "Verificar se apresentou licen\u00e7a ou se tomou alguma atitude. Caso contr\u00e1rio, multar."}];
+                const dados = [{"lat": -22.933127259926227, "lon": -42.99344700153827, "logradouro": "CORREA PINTO,PROF", "quadra": "19", "lote": "1", "inscricao": "2022690450", "processo": "9900029286/2026", "obs_proc": "Den\u00fancia de obras na rua"}, {"lat": -22.926406376675313, "lon": -43.02063133721026, "logradouro": "Av das Esmeraldas, 666", "quadra": "99", "lote": "5", "inscricao": "2013520470", "processo": "9900011431/2025", "obs_proc": "Aceite. Agendado para o dia 24/06/2026 pelo telefone 21 987411508"}, {"lat": -22.931836977052267, "lon": -43.01511727909852, "logradouro": "Rua professora Romana Gon\u00e7alves, 3885", "quadra": "36", "lote": "2", "inscricao": "2021860240", "processo": "9900006194/2025", "obs_proc": "[Multa preenchida no tal\u00e3o 5594]Verificar se apresentou licen\u00e7a ou se tomou alguma atitude. Caso contr\u00e1rio, multar."}, {"lat": -22.94382066260656, "lon": -43.02716361027231, "logradouro": "Ulisses de oliveira Madruga, Lote 18, Qd", "quadra": "69", "lote": "18", "inscricao": "2020990507", "processo": "9900216120/2025", "obs_proc": "[Continua\u00e7\u00e3o do processo 9900232114/2025] Verificar se a obra est\u00e1 paralisada e se fez apenas as modifica\u00e7\u00f5es de urg\u00eancia solicitadas por e-mail."}, {"lat": -22.944792455714264, "lon": -43.00904906028387, "logradouro": "73 (JARDIM FAZENDINHA)", "quadra": "126", "lote": "35", "inscricao": "2023530282", "processo": "9900003929/2026", "obs_proc": "Intimar para apresentar prova de legalidade / paralisar obras at\u00e9 a apresenta\u00e7\u00e3o da licen\u00e7a de obras. Intimar o denunciante tamb\u00e9m."}];
                 const bounds = [];
 
                 dados.forEach(item => {
