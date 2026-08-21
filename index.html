@@ -4,7 +4,7 @@
         <head>
             <meta charset="utf-8" />
             <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-            <title>FiscObras GPS - 07/08/2026</title>
+            <title>FiscObras GPS - 21/08/2026</title>
             <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
             <style>
                 body { margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
@@ -66,7 +66,7 @@
         </head>
         <body>
             <div class="info-banner">
-                <b>Rota:</b> 07/08/2026 | 4 locais
+                <b>Rota:</b> 21/08/2026 | 6 locais
             </div>
             <button class="btn-gps" onclick="clicouNoBotao()">🧭</button>
             <div id="map"></div>
@@ -89,7 +89,7 @@
                     shadowSize: [41, 41]
                 });
 
-                const dados = [{"id": "8821ed00-ef27-4238-8eaf-c91c60e0c54c", "lat": -22.941598645680436, "lon": -43.02186967838938, "logradouro": "PROFESSORA JURENIL ANDRADE COSTA", "quadra": "51", "lote": "10", "inscricao": "2021210401", "processo": "9900139934/2025", "obs_proc": "Verificar estado da constru\u00e7\u00e3o. Paralisou processo, mas construiu irregularmente."}, {"id": "99f8447e-78a0-495f-b648-c547ba5bd2c4", "lat": -22.924120635351475, "lon": -43.01393582387314, "logradouro": "CRISTAIS,DOS", "quadra": "92", "lote": "18", "inscricao": "2013340302", "processo": "9900040888/2024", "obs_proc": "Verificar o status da obra. Intimar para apresentar prova de legalidade da constru\u00e7\u00e3o ou obra [completar intima\u00e7\u00e3o]. Tal\u00e3o 37854."}, {"id": "ed2dc169-f586-498e-b12f-9f0431a1a028", "lat": -22.930768337427818, "lon": -43.02089599648863, "logradouro": "REPUBLICA DOMINICANA", "quadra": "106", "lote": "17", "inscricao": "2013480084", "processo": "9900219391/2025", "obs_proc": "Intimar para apresentar documenta\u00e7\u00e3o necess\u00e1ria para vistoria de aceite. Tal\u00e3o 37855."}, {"id": "67415601-5a3e-4a26-826f-8584d3517c0c", "lat": -22.938061148129062, "lon": -43.00990606847378, "logradouro": "COLINAS,DAS", "quadra": "79", "lote": "65", "inscricao": "2023921258", "processo": "9900135294/2025", "obs_proc": "Intimar para apresentar prova de legalidade da constru\u00e7\u00e3o. Tal\u00e3o 37856."}];
+                const dados = [{"id": "ac90331f-36ba-45f7-8726-b74b6a381f16", "lat": -22.936650037397097, "lon": -43.07943489578213, "logradouro": "DR, WALDIR COSTA", "quadra": "", "lote": "", "inscricao": "1063720207", "processo": "9900178410/2025", "obs_proc": "Multar o lote 4B e verificar se o lote 3B est\u00e1 com obras paralisadas. Tal\u00e3o 5595."}, {"id": "56676b67-43ef-4aea-9e25-1d47090a1487", "lat": -22.942921730788523, "lon": -43.010510088762175, "logradouro": "CEDRO ROSA", "quadra": "118", "lote": "40", "inscricao": "2023550742", "processo": "130000853/2023", "obs_proc": "Multar. Tal\u00e3o 5596"}, {"id": "2b2516e0-3b12-4b74-9072-314b4b422857", "lat": -22.938684791997463, "lon": -43.00570259892103, "logradouro": "ROSALINA MORAES PAIVA (JD FAZ TERRABRAS)", "quadra": "63", "lote": "5", "inscricao": "2023180300", "processo": "080001994/2022", "obs_proc": "Multar. Tal\u00e3o 5599."}, {"id": "e56e7947-9b58-4c3f-9934-977c0473bf21", "lat": -22.934616318367375, "lon": -43.000448643319885, "logradouro": "SEBASTIAO,SAO", "quadra": "22", "lote": "20", "inscricao": "2022750760", "processo": "130001734/2022", "obs_proc": "Multar. Tal\u00e3o 5598."}, {"id": "06e34b03-4506-40e6-ae93-2056a61bfc48", "lat": -22.935867615658793, "lon": -43.026719872987684, "logradouro": "FERDINANDO OGNIBENI", "quadra": "219", "lote": "33", "inscricao": "2013701126", "processo": "080001556/2022", "obs_proc": "Multar. Tal\u00e3o 5597."}, {"id": "02caa992-66e0-4352-9f8c-94b7e77e60b2", "lat": -22.93633593234987, "lon": -43.02143943597204, "logradouro": "ROMANDA GONCALVES,PROF", "quadra": "68", "lote": "1", "inscricao": "2021530220", "processo": "080007831/2017", "obs_proc": "Multar. Tal\u00e3o 5600."}];
                 const bounds = [];
                 
                 // Objeto para armazenar as referências aos marcadores
