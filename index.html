@@ -4,7 +4,7 @@
         <head>
             <meta charset="utf-8" />
             <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-            <title>FiscObras GPS - 16/10/2026</title>
+            <title>FiscObras GPS - 23/10/2026</title>
             <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
             <style>
                 body { margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
@@ -28,6 +28,7 @@
                     line-height: 1.6;
                     font-size: 15px;
                     color: #333;
+                    min-width: 240px;
                 }
                 .popup-title { font-size: 17px; margin-bottom: 4px; display: block; }
                 .popup-label { color: #000; font-weight: bold; }
@@ -35,6 +36,25 @@
                 .popup-divider { border-top: 1px solid #ccc; margin: 10px 0; }
                 .popup-process { color: #007AFF; font-weight: bold; text-decoration: none; }
                 .popup-obs { font-style: italic; color: #666; font-size: 13px; }
+
+                /* Estilo para o campo de observações da vistoria */
+                .popup-textarea {
+                    width: 100%;
+                    box-sizing: border-box;
+                    margin-top: 6px;
+                    padding: 8px;
+                    border: 1px solid #ccc;
+                    border-radius: 6px;
+                    font-family: inherit;
+                    font-size: 14px;
+                    color: #333;
+                    resize: vertical;
+                }
+                .popup-textarea:focus {
+                    outline: none;
+                    border-color: #007AFF;
+                    box-shadow: 0 0 4px rgba(0, 122, 255, 0.3);
+                }
 
                 .info-banner {
                     position: fixed; top: 10px; left: 10px; right: 10px; z-index: 1000;
@@ -66,7 +86,7 @@
         </head>
         <body>
             <div class="info-banner">
-                <b>Rota:</b> 16/10/2026 | 5 locais
+                <b>Rota:</b> 23/10/2026 | 7 locais
             </div>
             <button class="btn-gps" onclick="clicouNoBotao()">🧭</button>
             <div id="map"></div>
@@ -79,7 +99,7 @@
                 // Definição dos ícones Leaflet
                 const defaultIcon = new L.Icon.Default();
                 
-                // Ícone verde usando uma URL de ícone padrão do Leaflet, mas alterada a cor
+                // Ícone verde para locais já vistoriados
                 const greenIcon = new L.Icon({
                     iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-green.png',
                     shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
@@ -89,53 +109,92 @@
                     shadowSize: [41, 41]
                 });
 
-                const dados = [{"id": "6358608a-7044-45b3-94e4-116b5046c057", "lat": -22.94249111573463, "lon": -43.01488338945052, "logradouro": "BALTAZAR XAVIER,PROF", "quadra": "E", "lote": "18", "inscricao": "2023980120", "processo": "9900051552/2026", "obs_proc": "Vistoria de Aceite"}, {"id": "3296ad42-dd56-4ac9-9490-8f00c6edf79b", "lat": -22.943857712793942, "lon": -43.027140811495684, "logradouro": "ULISSES DE O MADRUGA", "quadra": "69", "lote": "18", "inscricao": "2020990507", "processo": "9900216120/2025", "obs_proc": "[Multa no tal\u00e3o 6405] Verificar se a obra est\u00e1 paralisada e se fez apenas as modifica\u00e7\u00f5es de urg\u00eancia solicitadas por e-mail."}, {"id": "5dfb9d4c-d47c-4326-8dea-c5c9ce796b2c", "lat": -22.9411229300113, "lon": -43.00918410640142, "logradouro": "ANGELINS,DOS", "quadra": "N/D", "lote": "N/D", "inscricao": "2023500437", "processo": "N\u00e3o vinculado", "obs_proc": ""}, {"id": "36bfb124-1657-47b5-9b49-29a6ed5a3b1c", "lat": -22.94140451679316, "lon": -43.009471102766014, "logradouro": "ANGELINS,DOS", "quadra": "116", "lote": "16", "inscricao": "2023570180", "processo": "9900233370/2025", "obs_proc": "[Confirmar no local que de fato \u00e9 lote 8, quadra 122]Multar por obra clandestina. Muro irregular avan\u00e7ando a cal\u00e7ada. Multa no tal\u00e3o 6406. "}, {"id": "b8418a93-042f-46ef-b230-0c88ce764460", "lat": -22.95498850352162, "lon": -43.02835463345204, "logradouro": "FERNANDO PEIXOTO,PROM", "quadra": "43", "lote": "2", "inscricao": "2010510065", "processo": "9900154422/2025", "obs_proc": "Multar se ainda estiver ocupando a cal\u00e7ada. Tal\u00e3o 6407."}];
+                const dados = [{"id": "2429bb57-7f56-4f07-b578-cb2857212ebb", "lat": -22.9448767919112, "lon": -43.00884394625561, "logradouro": "Endere\u00e7o n\u00e3o identificado", "quadra": "124", "lote": "29", "inscricao": "S/N", "processo": "9900003929/2026", "obs_proc": "Intimar para apresentar prova de legalidade / paralisar obras at\u00e9 a apresenta\u00e7\u00e3o da licen\u00e7a de obras. Intimar o denunciante tamb\u00e9m."}, {"id": "176d32fa-c89c-4d7a-abcf-df350eb45dc0", "lat": -22.93463021686607, "lon": -43.017751052013324, "logradouro": "REPUBLICA DOMINICANA", "quadra": "51", "lote": "19", "inscricao": "2021700062", "processo": "NIT-050134/000826/2026", "obs_proc": "Verificar se as obras s\u00e3o internas apenas ou se h\u00e1 acr\u00e9scimos. "}, {"id": "03c5260b-6945-44f2-a5b0-0ce165ebb9bf", "lat": -22.941430452388346, "lon": -43.00939063649557, "logradouro": "Rua dos Angelins, 270 - Esquina com prof. Helenice Coutinho Tebet", "quadra": "116", "lote": "16", "inscricao": "2023570180", "processo": "9900233370/2025", "obs_proc": "[Confirmar no local que de fato \u00e9 lote 8, quadra 122]Multar por obra clandestina. Muro irregular avan\u00e7ando a cal\u00e7ada. Multa no tal\u00e3o 6408. "}, {"id": "04beafa1-8f3a-403e-9c99-044829be886c", "lat": -22.934076834295386, "lon": -43.027199012649305, "logradouro": "JOSE CORTES JUNIOR", "quadra": "18", "lote": "3", "inscricao": "2013680112", "processo": "080001473/2018", "obs_proc": "Autuar por ocupar pr\u00e9dio sem aceite. Multa no tal\u00e3o 6409."}, {"id": "ebfd03ed-5f7f-4e5f-8e8e-1fab243f6ece", "lat": -22.935613200070854, "lon": -43.02429089945562, "logradouro": "JULIO O BITTENCOURT,PRF", "quadra": "5", "lote": "4", "inscricao": "2013630255", "processo": "080001319/2020", "obs_proc": "Intimar para apresentar certid\u00e3o completa. Tal\u00e3o 37865."}, {"id": "75a757e0-d5ea-49d0-ae24-6a4ca398f62b", "lat": -22.945709376799194, "lon": -43.016526820232, "logradouro": "6 (FAZENDA ENG DO MATO)", "quadra": "S", "lote": "16", "inscricao": "2024051943", "processo": "080012673/2022", "obs_proc": "Descrever est\u00e1gio da obra. Intimar para atualizar licen\u00e7a. Em caso de conclus\u00e3o, agendar vistoria de aceite, ap\u00f3s apresentar documenta\u00e7\u00e3o necess\u00e1ria para tal. Tal\u00e3o 37866."}, {"id": "0325481d-84a2-4ad1-a37b-3bf16a1cd9a8", "lat": -22.933802005318235, "lon": -42.99890490774453, "logradouro": "3 (JD FAZ TERRABRAS)", "quadra": "22", "lote": "42", "inscricao": "2022750270", "processo": "130001729/2022", "obs_proc": "Intimar para apresentar prova de legalidade da constru\u00e7\u00e3o. Tal\u00e3o 37867."}];
                 const bounds = [];
                 
-                // Objeto para armazenar as referências aos marcadores
+                // Objetos para armazenar referências aos marcadores e estados (check + anotações)
                 const markersObj = {};
+                const storageKey = "fiscobras_rota_" + "23/10/2026";
+                let estadoItens = {};
 
-                // Função global para lidar com o clique no botão
+                // Tenta recuperar anotações e checks salvos anteriormente no navegador
+                try {
+                    const salvo = localStorage.getItem(storageKey);
+                    if (salvo) estadoItens = JSON.parse(salvo);
+                } catch(e) {}
+
+                function persistirEstado() {
+                    try {
+                        localStorage.setItem(storageKey, JSON.stringify(estadoItens));
+                    } catch(e) {}
+                }
+
+                // Salva em tempo real o que o usuário digita no campo de vistoria
+                window.salvarNota = function(itemId, texto) {
+                    if (!estadoItens[itemId]) estadoItens[itemId] = { checked: false, nota: "" };
+                    estadoItens[itemId].nota = texto;
+                    persistirEstado();
+                };
+
+                // Alterna o estado de vistoriado (Check)
                 window.toggleCheck = function(itemId) {
+                    if (!estadoItens[itemId]) estadoItens[itemId] = { checked: false, nota: "" };
                     const btn = document.getElementById('btn-check-' + itemId);
                     const marker = markersObj[itemId];
                     
-                    if (btn.classList.contains('checked')) {
-                        // Reverter para não verificado
-                        btn.classList.remove('checked');
-                        btn.innerText = '☐ Marcar como Vistoriado';
-                        marker.setIcon(defaultIcon);
-                    } else {
-                        // Marcar como verificado
+                    estadoItens[itemId].checked = !estadoItens[itemId].checked;
+                    
+                    if (estadoItens[itemId].checked) {
                         btn.classList.add('checked');
                         btn.innerText = '☑ Vistoriado';
                         marker.setIcon(greenIcon);
+                    } else {
+                        btn.classList.remove('checked');
+                        btn.innerText = '☐ Marcar como Vistoriado';
+                        marker.setIcon(defaultIcon);
                     }
+                    persistirEstado();
                 };
 
                 dados.forEach(item => {
                     if(item.lat && item.lon) {
-                        const marker = L.marker([item.lat, item.lon], {icon: defaultIcon}).addTo(map);
+                        if (!estadoItens[item.id]) {
+                            estadoItens[item.id] = { checked: false, nota: "" };
+                        }
+
+                        const iconeInicial = estadoItens[item.id].checked ? greenIcon : defaultIcon;
+                        const marker = L.marker([item.lat, item.lon], {icon: iconeInicial}).addTo(map);
                         
-                        // Armazena o marcador para podermos mudar o ícone depois
                         markersObj[item.id] = marker;
                         
-                        // Layout do Balão com botão adicionado
-                        const content = `
-                            <b class="popup-title">Endereço: <span style="font-weight:normal; color:#444;">${item.logradouro}</span></b>
-                            <span class="popup-label">Quadra:</span> <span class="popup-value">${item.quadra}</span> | 
-                            <span class="popup-label">Lote:</span> <span class="popup-value">${item.lote}</span><br>
-                            <span class="popup-label">Insc:</span> <span class="popup-value">${item.inscricao}</span>
-                            <div class="popup-divider"></div>
-                            <span class="popup-label">Processo:</span> <span class="popup-process">${item.processo}</span>
-                            ${item.obs_proc ? '<br><span class="popup-label">Obs:</span> <span class="popup-obs">' + item.obs_proc + '</span>' : ''}
-                            
-                            <button id="btn-check-${item.id}" class="btn-check" onclick="toggleCheck('${item.id}')">
-                                ☐ Marcar como Vistoriado
-                            </button>
-                        `;
-                        
-                        marker.bindPopup(content);
+                        // Usa função dinâmica para que, ao fechar e reabrir o balão, o texto e o check permaneçam
+                        marker.bindPopup(() => {
+                            const st = estadoItens[item.id] || { checked: false, nota: "" };
+                            const btnClass = st.checked ? "btn-check checked" : "btn-check";
+                            const btnText = st.checked ? "☑ Vistoriado" : "☐ Marcar como Vistoriado";
+                            const notaSegura = (st.nota || "").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+
+                            return `
+                                <b class="popup-title">Endereço: <span style="font-weight:normal; color:#444;">${item.logradouro}</span></b>
+                                <span class="popup-label">Quadra:</span> <span class="popup-value">${item.quadra}</span> | 
+                                <span class="popup-label">Lote:</span> <span class="popup-value">${item.lote}</span><br>
+                                <span class="popup-label">Insc:</span> <span class="popup-value">${item.inscricao}</span>
+                                <div class="popup-divider"></div>
+                                <span class="popup-label">Processo:</span> <span class="popup-process">${item.processo}</span>
+                                ${item.obs_proc ? '<br><span class="popup-label">Obs:</span> <span class="popup-obs">' + item.obs_proc + '</span>' : ''}
+                                
+                                <div class="popup-divider"></div>
+                                <span class="popup-label">📝 Anotações da Vistoria:</span>
+                                <textarea id="nota-${item.id}" class="popup-textarea" rows="3" 
+                                    placeholder="Ex: Obras encontradas no local, proprietário intimado a paralisar..."
+                                    oninput="salvarNota('${item.id}', this.value)">${notaSegura}</textarea>
+
+                                <button id="btn-check-${item.id}" class="${btnClass}" onclick="toggleCheck('${item.id}')">
+                                    ${btnText}
+                                </button>
+                            `;
+                        });
+
                         bounds.push([item.lat, item.lon]);
                     }
                 });
