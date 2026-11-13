@@ -4,7 +4,7 @@
         <head>
             <meta charset="utf-8" />
             <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-            <title>FiscObras GPS - 23/10/2026</title>
+            <title>FiscObras GPS - 13/11/2026</title>
             <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
             <style>
                 body { margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
@@ -86,7 +86,7 @@
         </head>
         <body>
             <div class="info-banner">
-                <b>Rota:</b> 23/10/2026 | 7 locais
+                <b>Rota:</b> 13/11/2026 | 4 locais
             </div>
             <button class="btn-gps" onclick="clicouNoBotao()">🧭</button>
             <div id="map"></div>
@@ -109,12 +109,12 @@
                     shadowSize: [41, 41]
                 });
 
-                const dados = [{"id": "2429bb57-7f56-4f07-b578-cb2857212ebb", "lat": -22.9448767919112, "lon": -43.00884394625561, "logradouro": "Endere\u00e7o n\u00e3o identificado", "quadra": "124", "lote": "29", "inscricao": "S/N", "processo": "9900003929/2026", "obs_proc": "Intimar para apresentar prova de legalidade / paralisar obras at\u00e9 a apresenta\u00e7\u00e3o da licen\u00e7a de obras. Intimar o denunciante tamb\u00e9m."}, {"id": "176d32fa-c89c-4d7a-abcf-df350eb45dc0", "lat": -22.93463021686607, "lon": -43.017751052013324, "logradouro": "REPUBLICA DOMINICANA", "quadra": "51", "lote": "19", "inscricao": "2021700062", "processo": "NIT-050134/000826/2026", "obs_proc": "Verificar se as obras s\u00e3o internas apenas ou se h\u00e1 acr\u00e9scimos. "}, {"id": "03c5260b-6945-44f2-a5b0-0ce165ebb9bf", "lat": -22.941430452388346, "lon": -43.00939063649557, "logradouro": "Rua dos Angelins, 270 - Esquina com prof. Helenice Coutinho Tebet", "quadra": "116", "lote": "16", "inscricao": "2023570180", "processo": "9900233370/2025", "obs_proc": "[Confirmar no local que de fato \u00e9 lote 8, quadra 122]Multar por obra clandestina. Muro irregular avan\u00e7ando a cal\u00e7ada. Multa no tal\u00e3o 6408. "}, {"id": "04beafa1-8f3a-403e-9c99-044829be886c", "lat": -22.934076834295386, "lon": -43.027199012649305, "logradouro": "JOSE CORTES JUNIOR", "quadra": "18", "lote": "3", "inscricao": "2013680112", "processo": "080001473/2018", "obs_proc": "Autuar por ocupar pr\u00e9dio sem aceite. Multa no tal\u00e3o 6409."}, {"id": "ebfd03ed-5f7f-4e5f-8e8e-1fab243f6ece", "lat": -22.935613200070854, "lon": -43.02429089945562, "logradouro": "JULIO O BITTENCOURT,PRF", "quadra": "5", "lote": "4", "inscricao": "2013630255", "processo": "080001319/2020", "obs_proc": "Intimar para apresentar certid\u00e3o completa. Tal\u00e3o 37865."}, {"id": "75a757e0-d5ea-49d0-ae24-6a4ca398f62b", "lat": -22.945709376799194, "lon": -43.016526820232, "logradouro": "6 (FAZENDA ENG DO MATO)", "quadra": "S", "lote": "16", "inscricao": "2024051943", "processo": "080012673/2022", "obs_proc": "Descrever est\u00e1gio da obra. Intimar para atualizar licen\u00e7a. Em caso de conclus\u00e3o, agendar vistoria de aceite, ap\u00f3s apresentar documenta\u00e7\u00e3o necess\u00e1ria para tal. Tal\u00e3o 37866."}, {"id": "0325481d-84a2-4ad1-a37b-3bf16a1cd9a8", "lat": -22.933802005318235, "lon": -42.99890490774453, "logradouro": "3 (JD FAZ TERRABRAS)", "quadra": "22", "lote": "42", "inscricao": "2022750270", "processo": "130001729/2022", "obs_proc": "Intimar para apresentar prova de legalidade da constru\u00e7\u00e3o. Tal\u00e3o 37867."}];
+                const dados = [{"id": "f85e8a09-28cb-4d68-9232-095cdda968a5", "lat": -22.935928849725318, "lon": -43.026585900438135, "logradouro": "FERDINANDO OGNIBENI", "quadra": "219", "lote": "34", "inscricao": "2013701108", "processo": "9900105481/2024", "obs_proc": "Aceite agendado para o dia 13/11/2026"}, {"id": "0444e101-c0c6-4d6a-addd-90530f530a37", "lat": -22.933051265731105, "lon": -43.022097511473504, "logradouro": "ROBERTO C DE MIRANDA,TNR", "quadra": "76", "lote": "10", "inscricao": "2013170322", "processo": "9900000258/2024", "obs_proc": "Verificar status da obra. Intimar para renovar licen\u00e7a de obras. Intima\u00e7\u00e3o no tal\u00e3o 37871."}, {"id": "acdeacff-bfc9-4bab-ab84-b151cb5de4a3", "lat": -22.92569045597955, "lon": -43.01905584796475, "logradouro": "JOSE CORTES JUNIOR", "quadra": "93", "lote": "11", "inscricao": "2013540195", "processo": "9900071031/2024", "obs_proc": "Verificar status da obra. Intimar para renovar licen\u00e7a de obras. Intima\u00e7\u00e3o no tal\u00e3o 37872."}, {"id": "10bb75a1-0969-4405-9b16-5063a6f1d66c", "lat": -22.918980844204548, "lon": -43.011557076078134, "logradouro": "1 (UBA 2)", "quadra": "8", "lote": "32", "inscricao": "2010071930", "processo": "9900118400/2024", "obs_proc": "Verificar status da obra. Intimar para renovar licen\u00e7a de obras. Propriet\u00e1rio Jo\u00e3o Radaeli. Intima\u00e7\u00e3o no tal\u00e3o 37873."}];
                 const bounds = [];
                 
                 // Objetos para armazenar referências aos marcadores e estados (check + anotações)
                 const markersObj = {};
-                const storageKey = "fiscobras_rota_" + "23/10/2026";
+                const storageKey = "fiscobras_rota_" + "13/11/2026";
                 let estadoItens = {};
 
                 // Tenta recuperar anotações e checks salvos anteriormente no navegador
